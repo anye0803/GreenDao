@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.anye.greendao"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+apply plugin: 'org.greenrobot.greendao'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
+    }
+}
+
+greendao {
+    schemaVersion 1
+    daoPackage 'com.anye.greendao.gen'
+    targetGenDir 'src/main/java'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'org.greenrobot:greendao:3.0.1'
+    compile 'org.greenrobot:greendao-generator:3.0.0'
+}
